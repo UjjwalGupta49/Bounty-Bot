@@ -13,7 +13,7 @@ module.exports = {
           {name: '```/bounty```', value: "Create a bounty by providing required feilds."},
           {name: '```/bounty list```' , value: "Show all active bounties."},
           {name: '```/bounty accept <id>```' , value: "Accept a bounty and start working on it!"},
-          {name: '```/bounty in <pub-key>```' , value: "Register your public key with Bounty Bot, required to get approvals."},
+          {name: '```/bounty in <pub-key>```' , value: "Register your public key with Bounty Bot, **required to get approvals.**"},
           {name: '```/bounty status <id>```' , value: "Check status of the bounty."},
           {name: '```/bounty approve <id> <username>```' , value: "Approve bounty for submissions\nOnly availabe for bounty creators."},
         )

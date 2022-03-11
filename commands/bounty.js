@@ -59,22 +59,28 @@ module.exports = {
         Date.now()
     );
     let attachment_link;
+    let acceptable_by;
 
-    if (interaction.options.getString("attachment_link") === null) {
+    if ((interaction.options.getString("attachment_link") === null)) {
       attachment_link = "   🏁   ";
+      
     }
     else{
-        attachment_link = interaction.options.getString("attachment_link");
+      attachment_link = interaction.options.getString("attachment_link");
     }
 
-    const title = interaction.options.getString("title");
-    const breif = interaction.options.getString("breif");
-    const description = interaction.options.getString("description");
-    const payment_method = interaction.options.getString("payment_method");
+    if (interaction.options.getString("acceptable_by") === null) {
+      acceptable_by = "@everyone";
+    }
+    else {
+      acceptable_by = interaction.options.getString("acceptable_by");
+    }
+
+    const title = String(interaction.options.getString("title"));
+    const breif = String(interaction.options.getString("breif"));
+    const description = String(interaction.options.getString("description"));
+    const payment_method = String(interaction.options.getString("payment_method"));
     const reward = interaction.options.getNumber("reward");
-    const acceptable_by = interaction.options.getString("acceptable_by");
-
-
 
     const embed = new MessageEmbed()
       .setColor("GREEN")
@@ -96,7 +102,7 @@ module.exports = {
           value: acceptable_by,
         },
         { name: "Reward", value: `${reward} ${payment_method}`, inline: true },
-        { name: "Attachment", value: attachment_link, inline: true }
+        { name: "Attachment", value: attachment_link, inline: true },
       )
       .setFooter({ text: `${uniqueId}` });
     interaction.applicationId = uniqueId;
@@ -123,7 +129,7 @@ module.exports = {
       bountyTitle: title,
       bountyAmount: reward,
       bountyPaymentMethod: payment_method,
-      bountyTransactionStatus: "Pending",
+      bountyStatus: "Pending", // Pending // Bounties will only be shown by bounty_list id status is active
       bountyAcceptableBy: acceptable_by,
       bountyServerId: interaction.guild.id,
       bountyServerName: interaction.guild.name,
@@ -135,10 +141,13 @@ module.exports = {
         console.log(err);
         interaction.reply("Error saving bounty");
       }
-      interaction.reply({ content: `${interaction.member} DM sent to you!`, embeds: [embed], components: [row], ephemeral: true, });
+      interaction.reply({ content: `${interaction.member} DM sent to you!`, embeds: [embed], components: [row], }); //  ephemeral: true,
     });
 
     // interaction.reply({ content: `${interaction.member} DM sent to you!`, embeds: [embed], components: [row], ephemeral: true, }); // ephemeral: true,
     //     console.log(interaction.guild.roles.cache.forEach(role => console.log(role.name)));
   },
 };
+
+
+// add date of completion

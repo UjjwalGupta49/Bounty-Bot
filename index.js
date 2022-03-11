@@ -83,3 +83,12 @@ client.on("messageCreate", () => {
 
 
 client.login(process.env.TOKEN);
+
+
+// const findResult = await orders.find({
+//   name: "Lemony Snicket",
+//   date: {
+//     $gte: new Date(new Date().setHours(00, 00, 00)),
+//     $lt: new Date(new Date().setHours(23, 59, 59)),
+//   },
+// });
