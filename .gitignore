@@ -1,2 +1,4 @@
 node_modules/
 package-lock.json
+commands\ping.js
+commands\echo.js
