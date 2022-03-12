@@ -117,6 +117,7 @@ module.exports = {
       .setLabel('Finalize')
       .setStyle('LINK')
       .setURL(`${process.env.WEBSITE_BASE_URL}/bounty/?id=${uniqueId}`),
+      // .setCustomId('finalize') only LINK buttons can have seturl method, cannot have customId.
     );
 
     // await interaction.channel.send({ embeds: [embed] });
