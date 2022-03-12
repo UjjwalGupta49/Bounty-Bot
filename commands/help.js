@@ -4,7 +4,7 @@ const {SlashCommandBuilder} = require("@discordjs/builders");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("help")
-        .setDescription("list of commands for Bounty Bot"),
+        .setDescription("List of commands for Bounty Bot"),
     async excute(interaction) {
         const embed = new discord.MessageEmbed()
         .setColor("GREEN")

@@ -11,18 +11,20 @@ module.exports = {
     const embed = new MessageEmbed()
       .setColor("GREEN")
       .setTitle(`**Active Bounties 🏁**`)
-      .setDescription(`List of all active bounties in your sever.`);
+      .setDescription(`List of all active bounties in your sever.`)
+      .setFooter({ text: `Bounty Bot/💲` });
 
     BountySettings.find()
       .then((result) => {
-        result.forEach((element) => { // have to make it visible as per server
+        result.forEach((element) => { // have to make it visible as per server, // restructure the database to prioritize server ID
+          if (element.bountyServerId == interaction.guild.id) {
             if (element.bountyStatus === "Active") { // bountyServerId
-              if (interaction)
                 embed.addFields(
                     { name: `${element.bountyTitle}`, value: `Id: ${element.bountyId}, Reward: ${element.bountyAmount} ${element.bountyPaymentMethod}` }
-                );
+                );  
             }
-        });
+        }});
+
         interaction.reply({ embeds: [embed] });
       })
 

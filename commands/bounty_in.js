@@ -13,7 +13,7 @@ module.exports = {
     .addStringOption((option) =>
       option
         .setName("public_key")
-        .setDescription("the message to echo")
+        .setDescription("your publickey to registered with Bounty Bot.")
         .setRequired(true)
     ),
   async excute(interaction) {
@@ -25,7 +25,8 @@ module.exports = {
       .setTitle(`**Registered sucessfully ✅**`)
       .setDescription(
         `${user} with Public Key:\n${pubKey} was registerd sucessfully`
-      );
+      )
+      .setFooter({ text: `Bounty Bot/💲` });
 
     BountyInSettings.findOne({ userName: user })
       .then((result) => {

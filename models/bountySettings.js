@@ -8,8 +8,13 @@ const BountySchema = new mongoose.Schema({
     bountyAmount: Number,
     bountyPaymentMethod: String,
     bountyStatus: String,
+    bountyContributors:  {
+        type: Array,
+        default: []
+    },
     bountyAttachment: String,
     bountyAcceptableBy: String,
+    bountyAuthor: String,
     bountyServerId: String,
     bountyServerName: String,
     bountyTimestamp: String,

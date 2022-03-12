@@ -5,7 +5,7 @@ module.exports = {
         .setName("ping")
         .setDescription("Replies with pong"),
     async excute(interaction) {
-        const tagUser =   interaction.member
+        const tagUser =   interaction.member;
         interaction.reply(`${tagUser} Pong!`);
     }
 

@@ -114,14 +114,14 @@ module.exports = {
       .setLabel('Cancel')
       .setStyle('SECONDARY'),
       new MessageButton()
-        .setCustomId('finalize')
-        .setLabel('Finalize')
-        .setStyle('SUCCESS'),
+      .setLabel('Finalize')
+      .setStyle('LINK')
+      .setURL(`${process.env.WEBSITE_BASE_URL}/bounty/?id=${uniqueId}`),
     );
 
     // await interaction.channel.send({ embeds: [embed] });
-    await interaction.member.createDM().then((dm) => {
-      dm.send(`You created a bounty ${uniqueId}, at ${dateTime}`);
+    await interaction.member.createDM().then((dm) => { // DM should go  as embed
+      dm.send(`You created a bounty ${uniqueId}, for ${title} on the server ${interaction.guild.name} at ${dateTime} for reward ${reward} ${payment_method}`);
     });
 
     const bounty = new BountySettings({
@@ -131,6 +131,7 @@ module.exports = {
       bountyPaymentMethod: payment_method,
       bountyStatus: "Pending", // Pending // Bounties will only be shown by bounty_list id status is active
       bountyAcceptableBy: acceptable_by,
+      bountyAuthor: String(`<@${interaction.member.id}>`),
       bountyServerId: interaction.guild.id,
       bountyServerName: interaction.guild.name,
       bountyTimestamp: dateTime,
@@ -141,7 +142,7 @@ module.exports = {
         console.log(err);
         interaction.reply("Error saving bounty");
       }
-      interaction.reply({ content: `${interaction.member} DM sent to you!`, embeds: [embed], components: [row], }); //  ephemeral: true,
+      interaction.reply({ content: `${interaction.member} DM sent to you!`, embeds: [embed], components: [row], ephemeral: true, }); //  ephemeral: true,
     });
 
     // interaction.reply({ content: `${interaction.member} DM sent to you!`, embeds: [embed], components: [row], ephemeral: true, }); // ephemeral: true,
