@@ -58,20 +58,20 @@ for (const file of eventsFiles) {
 
 // const guildId = "785428302114455592"; //785428302114455592
 
-client.on("messageCreate", () => {
-  const guildId = "785428302114455592"; //785428302114455592
-  const guild = client.guilds.cache.get(guildId);
-  let commands; // holds the guild command manager 
+// client.on("messageCreate", () => {
+//   const guildId = "785428302114455592"; //785428302114455592
+//   const guild = client.guilds.cache.get(guildId);
+//   let commands; // holds the guild command manager 
 
-  // let k = guild.roles.cache.role
-  // console.log(k);
+//   // let k = guild.roles.cache.role
+//   // console.log(k);
   
-  if (guild) {
-    commands = guild.commands;
-  } else {
-    commands = client.application?.commands;
-  }
-});
+//   if (guild) {
+//     commands = guild.commands;
+//   } else {
+//     commands = client.application?.commands;
+//   }
+// });
 
 /*Types of Slash command
   Guild based
