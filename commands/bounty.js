@@ -81,6 +81,7 @@ module.exports = {
     const description = String(interaction.options.getString("description"));
     const payment_method = String(interaction.options.getString("payment_method"));
     const reward = interaction.options.getNumber("reward");
+    const user = interaction.member;
 
     const embed = new MessageEmbed()
       .setColor("GREEN")
@@ -120,9 +121,16 @@ module.exports = {
       // .setCustomId('finalize') only LINK buttons can have seturl method, cannot have customId.
     );
 
+    const dmEmbed  = new MessageEmbed()
+    .setColor("GREEN")
+    .setTitle(`**Bounty Created**`)
+    .setDescription(`${user} created a bounty for ${title} and reward: ${reward} ${payment_method}\n The bounty Id is ${uniqueId}, it's a unique identifier for this bounty\nPlease finalize your bounty and let's get started! ✅`)
+    .setFooter({ text: `Bounty Bot/💲` });
+
+
     // await interaction.channel.send({ embeds: [embed] });
     await interaction.member.createDM().then((dm) => { // DM should go  as embed
-      dm.send(`You created a bounty ${uniqueId}, for ${title} on the server ${interaction.guild.name} at ${dateTime} for reward ${reward} ${payment_method}`);
+      dm.send({ embeds: [dmEmbed] });
     });
 
     const bounty = new BountySettings({
@@ -153,3 +161,4 @@ module.exports = {
 
 
 // add date of completion
+// retrive timestamp from the bounty 1) in users locale time, 2) in GMT standard time
