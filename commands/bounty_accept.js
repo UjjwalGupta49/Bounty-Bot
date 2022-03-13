@@ -55,3 +55,5 @@ module.exports = {
 
  
 
+// also update user's accepted bounties in his profile.(obj with accepted bounty id's and completion status) 
+// create a channel when bounty bot is added to the server

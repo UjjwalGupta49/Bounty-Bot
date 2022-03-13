@@ -28,7 +28,7 @@ module.exports = {
       )
       .setFooter({ text: `Bounty Bot/💲` });
 
-    BountyInSettings.findOne({ userName: user })
+    await BountyInSettings.findOne({ userName: user })
       .then((result) => {
         if (result) {
           result.publicKey = pubKey;
