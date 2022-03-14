@@ -28,24 +28,12 @@ module.exports = {
       )
       .setFooter({ text: `Bounty Bot/💲` });
 
-    BountyInSettings.findOne({ userName: user })
-      .then((result) => {
-        if (result) {
-          result.publicKey = pubKey;
-          result.save();
-          interaction.reply({ embeds: [embed] });
-        } else {
-          const newBountyIn = new BountyInSettings({
-            userName: user,
-            userPubKey: pubKey,
-          });
-          newBountyIn.save();
-          interaction.reply({ embeds: [embed] });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    await BountyInSettings.findOneAndUpdate(
+      { userName: user },
+      { userPubKey: pubKey },
+      { upsert: true }
+    );
+    interaction.reply({ embeds: [embed] });
   },
 };
 
