@@ -36,6 +36,7 @@ module.exports = {
                         `${user} accepted the bounty ${bounty_id}`
                     )
                     .setFooter({ text: `Bounty Bot/💲` });
+                    
                 interaction.reply({ embeds: [embed] });
             }
 
