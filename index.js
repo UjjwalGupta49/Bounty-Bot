@@ -83,6 +83,12 @@ client.on("guildCreate", (guild) => {
 // 785428302114455592 // this is the server id
 // EnYqiB4AsV9dcihwCdcPrnE6fXZLNxYxfrzVG4CT2vR8
 
+// enable ony whitelisted cors
+const cors = require("cors");
+
+const origin = [`${process.env.WEBSITE_BASE_URL}`];
+app.use(cors({ origin }));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
