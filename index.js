@@ -1,9 +1,12 @@
-const discord = require("discord.js");
 const { Client, Intents, Collection } = require("discord.js");
 const Database = require("./config/Database");
+const express = require("express");
+const bodyParser = require("body-parser");
+const bountyRoutes = require("./api/bounty.api");
 
 const db = new Database();
 db.connect();
+const app = express();
 
 const fs = require("fs");
 const dotenv = require("dotenv");
@@ -38,10 +41,6 @@ const eventsFiles = fs
   .readdirSync(path.join(__dirname, "./events"))
   .filter((file) => file.endsWith(".js"));
 
-
-
-
-
 for (const file of eventsFiles) {
   const event = require(`./events/${file}`);
 
@@ -50,22 +49,25 @@ for (const file of eventsFiles) {
   } else {
     client.on(event.name, (...args) => event.execute(...args, commands));
   }
-
-
 }
-
-
+// on Bot add, create a channel named "bounties"
+client.on("guildCreate", (guild) => {
+  guild.channels
+    .create("bounties", { reason: "maintains your bounty" })
+    .then(() => console.log("created a channel"))
+    .catch((e) => console.log(e));
+});
 
 // const guildId = "785428302114455592"; //785428302114455592
 
 // client.on("messageCreate", () => {
 //   const guildId = "785428302114455592"; //785428302114455592
 //   const guild = client.guilds.cache.get(guildId);
-//   let commands; // holds the guild command manager 
+//   let commands; // holds the guild command manager
 
 //   // let k = guild.roles.cache.role
 //   // console.log(k);
-  
+
 //   if (guild) {
 //     commands = guild.commands;
 //   } else {
@@ -81,9 +83,17 @@ for (const file of eventsFiles) {
 // 785428302114455592 // this is the server id
 // EnYqiB4AsV9dcihwCdcPrnE6fXZLNxYxfrzVG4CT2vR8
 
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
+app.use("/bounties", bountyRoutes);
+
+// run server in 3000
+app.listen(3000, () => {
+  console.log("express server running on localhost:3000");
+});
 
 client.login(process.env.TOKEN);
-
 
 // const findResult = await orders.find({
 //   name: "Lemony Snicket",
