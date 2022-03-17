@@ -95,7 +95,7 @@ app.use(bodyParser.json());
 app.use("/bounties", bountyRoutes);
 
 // run server in 3000
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("express server running on localhost:3000");
 });
 
