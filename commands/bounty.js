@@ -151,7 +151,7 @@ module.exports = {
         console.log(err);
         interaction.reply("Error saving bounty");
       }
-      interaction.reply({ content: `${interaction.member} DM sent to you!`, embeds: [embed], components: [row],    });  //  ephemeral: true,
+      interaction.reply({ content: `${interaction.member} DM sent to you!`, embeds: [embed], components: [row], ephemeral: true   });  //  ephemeral: true,
     });
 
     // interaction.reply({ content: `${interaction.member} DM sent to you!`, embeds: [embed], components: [row], ephemeral: true, }); // ephemeral: true,
