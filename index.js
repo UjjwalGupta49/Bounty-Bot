@@ -19,8 +19,6 @@ const client = new Client({
 });
 
 // https://discord.com/api/oauth2/authorize?client_id=946011776594636830&permissions=517544598720&scope=bot%20applications.commands
-// This link will people to add bot to server
-// Token: OTQ2MDExNzc2NTk0NjM2ODMw.YhYgHw.RDkX_F_e8i4-d54iKydqaBo7VUw Don't give to anyone else
 
 const commandFiles = fs
   .readdirSync(path.join(__dirname, "./commands"))
