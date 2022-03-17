@@ -86,8 +86,8 @@ client.on("guildCreate", (guild) => {
 // enable ony whitelisted cors
 const cors = require("cors");
 
-const origin = [`${process.env.WEBSITE_BASE_URL}`];
-app.use(cors({ origin }));
+// const origin = [`${process.env.WEBSITE_BASE_URL}`, "http://localhost:8080"];
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
