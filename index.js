@@ -1,8 +1,9 @@
-const { Client, Intents, Collection } = require("discord.js");
+const { Collection } = require("discord.js");
 const Database = require("./config/Database");
 const express = require("express");
 const bodyParser = require("body-parser");
 const bountyRoutes = require("./api/bounty.api");
+const client = require('./discord-config')
 
 const db = new Database();
 db.connect();
@@ -14,9 +15,6 @@ const path = require("path");
 // const {bountyHelp, helpEmbed} = require('./src/bountyHelp.js');
 dotenv.config();
 
-const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
-});
 
 // https://discord.com/api/oauth2/authorize?client_id=946011776594636830&permissions=517544598720&scope=bot%20applications.commands
 
