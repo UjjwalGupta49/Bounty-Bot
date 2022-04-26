@@ -1,8 +1,9 @@
 const discord = require("discord.js");
 const shortHash = require("short-hash");
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
-const BountySettings = require("../models/bountySettings");
+const BountySettings = require("../models/bountyInSettings");
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const client = require('../discord-config')
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -111,13 +112,9 @@ module.exports = {
     const row = new MessageActionRow()
     .addComponents(
       new MessageButton()
-      .setCustomId('cancel')
-      .setLabel('Cancel')
-      .setStyle('SECONDARY'),
-      new MessageButton()
       .setLabel('Finalize')
       .setStyle('LINK')
-      .setURL(`${process.env.WEBSITE_BASE_URL}/bounty/?id=${uniqueId}`),
+      .setURL(`${process.env.WEBSITE_BASE_URL}/bounty/?id=${uniqueId}&guild=${interaction.guildId}`),
       // .setCustomId('finalize') only LINK buttons can have seturl method, cannot have customId.
     );
 
